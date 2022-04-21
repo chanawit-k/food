@@ -9,3 +9,4 @@ class Item(models.Model):
     item_name = models.CharField(max_length=200)
     item_desc = models.CharField(max_length=200)
     item_price = models.IntegerField()
+    item_img = models.CharField(max_length=500, default="https://image.shutterstock.com/image-vector/dish-sketch-vector-illustration-isolated-260nw-582588370.jpg")
