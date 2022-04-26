@@ -1,13 +1,17 @@
-from multiprocessing import context
+
 from urllib import request
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.template import loader
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 from .models import Item
 from .forms import ItemForm 
 
 # Create your views here.
+
+# function base view
 def index(request): 
     Item_list = Item.objects.all()
     context = {
@@ -15,12 +19,25 @@ def index(request):
     }
     return render(request, 'food/index.html' , context )
 
+# class base view 
+class IndexClassView(ListView):
+    model = Item
+    template_name = 'food/index.html'
+    context_object_name  = 'Item_list'
+
 def detail(request, item_id):
     item = Item.objects.get(pk=item_id)
     context = {
         'item': item
     }
     return render(request, 'food/detail.html' , context )
+
+class FoodDetail(DetailView):
+    model = Item
+    template_name = 'food/detail.html'
+    context_object_name = 'item'
+    ## note 
+    ## ถ้า ไม่ใส่ 'context_object_name' จะ default เป็น 'object'
 
 def item(request):
     return HttpResponse('<h1> item views </h1>')
