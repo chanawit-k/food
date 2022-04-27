@@ -1,3 +1,7 @@
 body { 
-    background-color: rgba(228, 225, 225, 0.808);
+    background-color: rgba(236, 231, 231, 0.808);
+}
+
+text {
+    color: aquamarine;
 }
